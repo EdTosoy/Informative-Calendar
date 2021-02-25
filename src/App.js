@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import TodoContainer from "./TodoContainer";
+
+import { useState, useEffect } from "react";
+
+const LOCAL_STORAGE_KEY = "AWESOME-TODO-APP";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storedTodos) setTodos(storedTodos);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <h1 className="text-center text-decoration-underline  mb-4">
+          AWESOME-TODO-APP
+        </h1>
+        <div className="week ">
+          <TodoContainer todos={todos} setTodos={setTodos} date={24} />
+        </div>
+      </div>
     </div>
   );
 }

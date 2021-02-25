@@ -1,38 +1,76 @@
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.date {
+  margin: auto;
+  width: 50px;
+  height: 50px;
+}
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns:
+    minmax(1rem, 1fr)
+    minmax(1rem, 1500px)
+    minmax(1rem, 1fr);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  margin: 100px 0;
+  grid-column-start: 2;
+  grid-column-end: -2;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add {
+  font-size: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.add:hover {
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.headlineBorder {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  margin-top: -15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.completed {
+  background-color: #50AF50;
+}
+
+box-icon {
+  cursor: pointer;
+}
+box-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.modal-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.192);
+  left: 0;
+  top: 0;
+}
+
+.add-modal {
+  width: 450px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  border-radius: 6px;
+  gap: 1rem;
+  background-color: white;
+  padding: 2rem;
+}
+.add-modal input {
+  padding: 5px;
+}
+.add-modal button {
+  width: 50%;
+  margin: 0 auto;
 }
