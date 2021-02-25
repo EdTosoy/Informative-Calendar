@@ -2,6 +2,7 @@ import "./App.css";
 import TodoContainer from "./TodoContainer";
 
 import { useState, useEffect } from "react";
+import { addDays, startOfWeek, format } from "date-fns";
 
 const LOCAL_STORAGE_KEY = "AWESOME-TODO-APP";
 
@@ -15,6 +16,18 @@ function App() {
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
+  const [datePickerValue, setDatePickerValue] = useState(null);
+  let d;
+  if (datePickerValue == null) {
+    d = new Date();
+  } else {
+    d = new Date(datePickerValue);
+  }
+
+  const weekStart = startOfWeek(d);
+  const week = [...Array(7)].map((_, i) =>
+    format(addDays(weekStart, i), "yyyy-LL-dd-ccc")
+  );
 
   return (
     <div className="App">
@@ -22,8 +35,25 @@ function App() {
         <h1 className="text-center text-decoration-underline  mb-4">
           AWESOME-TODO-APP
         </h1>
-        <div className="week ">
-          <TodoContainer todos={todos} setTodos={setTodos} date={24} />
+        <div className="date-container">
+          <h3 className="text-secondary">{format(d, "LLLL")}</h3>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={datePickerValue}
+            onChange={(e) => setDatePickerValue(e.target.value)}
+          />
+        </div>
+        <div className="week">
+          {week.map((date, index) => (
+            <TodoContainer
+              todos={todos}
+              setTodos={setTodos}
+              date={date}
+              key={index}
+            />
+          ))}
         </div>
       </div>
     </div>

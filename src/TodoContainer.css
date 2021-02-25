@@ -1,0 +1,58 @@
+.todo-container {
+  height: 480px;
+  overflow-y: hidden;
+}
+.date {
+  margin: auto;
+  width: 50px;
+  height: 50px;
+}
+.headline-border {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-top: none;
+  margin-top: -15px;
+}
+
+.modal-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.192);
+  left: 0;
+  top: 0;
+}
+
+.add-modal {
+  width: 450px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  border-radius: 6px;
+  gap: 1rem;
+  background-color: white;
+  padding: 2rem;
+}
+.add-modal input {
+  padding: 5px;
+}
+.add-modal button {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.place-holder {
+  height: 70px;
+}
+
+.add-btn {
+  height: 48px;
+  margin: 10px;
+}
+.add-btn:hover {
+  color: white;
+}

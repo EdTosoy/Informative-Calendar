@@ -1,4 +1,5 @@
 import React from "react";
+import "./TodoList.css";
 
 export default function TodoList({ todos, toggleTodo, deleteTodo }) {
   return (
@@ -22,7 +23,9 @@ export default function TodoList({ todos, toggleTodo, deleteTodo }) {
                 <box-icon name="check-circle" color="#77C788"></box-icon>
               )}
             </div>
-            <p className={`${complete && "text-white"} pt-3 text-capitalize  `}>{name}</p>
+            <p className={`${complete && "text-white"} pt-3 text-capitalize  `}>
+              {name}
+            </p>
             <div
               onClick={() => {
                 deleteTodo(id);

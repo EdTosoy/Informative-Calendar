@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TodoList from "./TodoList";
+import { format } from "date-fns";
+import "./TodoContainer.css";
 
 export default function TodoContainer({ todos, setTodos, date }) {
   const [showModal, setShowModal] = useState(false);
@@ -32,19 +34,22 @@ export default function TodoContainer({ todos, setTodos, date }) {
     const newTodos = todos.filter((item) => item.id !== id);
     setTodos(newTodos);
   }
-  const d = new Date();
+  const today = format(new Date(), "yyyy-LL-dd-ccc");
+  const TODAY_OR_FUTURE =
+    today.split("-")[0] + today.split("-")[1] + today.split("-")[2] <=
+    date.split("-")[0] + date.split("-")[1] + date.split("-")[2];
   return (
-    <div className="text-center">
-      <header className="">
-        <h2>Tue</h2>
+    <div className="text-center mt-5 todo-container">
+      <header>
+        <h6 className="text-secondary text-uppercase">{date.split("-")[3]}</h6>
         <h3
           className={`${
-            d.getDate() === date && "bg-primary text-white"
-          }  p-2 rounded-circle  date`}
+            today === date && "bg-primary text-white"
+          }  p-2 rounded-circle date`}
         >
-          {date}
+          {date.split("-")[2]}
         </h3>
-        <div className="headlineBorder"></div>
+        <div className="headline-border"></div>
       </header>
 
       <TodoList
@@ -53,35 +58,43 @@ export default function TodoContainer({ todos, setTodos, date }) {
         deleteTodo={deleteTodo}
       />
 
-      <div className="p-2 border d-grid place-content-center ">
-        <button
-          className="p-3 btn btn-outline-warning add modarl-content"
-          onClick={() => setShowModal((prev) => !prev)}
-        >
-          Add Item
-        </button>
-        {showModal && (
-          <div
-            className="modal-wrapper"
+      {TODAY_OR_FUTURE && (
+        <div className=" border d-grid place-content-center ">
+          <button
+            className="btn  btn-outline-warning  add-btn"
             onClick={() => setShowModal((prev) => !prev)}
           >
+            Add Item
+          </button>
+          {showModal && (
             <div
-              className="add-modal"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+              className="modal-wrapper"
+              onClick={() => setShowModal((prev) => !prev)}
             >
-              <input type="text" ref={todoNameRef} />
-              <button
-                className="btn btn-outline-warning add"
-                onClick={handleAddTodo}
+              <div
+                className="add-modal"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
               >
-                Add Item
-              </button>
+                <input type="text" ref={todoNameRef} />
+                <button
+                  className="btn btn-outline-warning add"
+                  onClick={handleAddTodo}
+                >
+                  Add Item
+                </button>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
+      <div className="border place-holder"></div>
+      <div className="border place-holder"></div>
+      <div className="border place-holder"></div>
+      <div className="border place-holder"></div>
+      <div className="border place-holder"></div>
+      <div className="border place-holder"></div>
     </div>
   );
 }

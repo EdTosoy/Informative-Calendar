@@ -1,0 +1,11 @@
+.completed {
+  background-color: #50af50;
+}
+
+box-icon {
+  cursor: pointer;
+}
+box-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
