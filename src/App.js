@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <div className="container">
         <h1 className="text-center text-decoration-underline  mb-4">
-          AWESOME-TODO-APP
+          Informative Calendar
         </h1>
         <div className="date-container">
           <h3 className="text-secondary">{format(d, "LLLL")}</h3>
